@@ -27,10 +27,10 @@ router.get("/:id", async function (req, res, next) {
 /** POST /   bookData => {book: newBook}  */
 router.post("/", async function (req, res, next) {
   const valid = validateBook(req.body);
-  if (!valid.valid) {
+  if (!valid) {
     return next({
       status: 400,
-      message: valid.errors.map((e) => e.message).join(", "),
+      message: validateBook.errors.map((e) => e.message).join(", "),
     });
   }
 
